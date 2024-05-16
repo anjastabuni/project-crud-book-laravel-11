@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Controllers\BookController;
-use App\Http\Controllers\KontakController;
 use App\Http\Controllers\UserController;
 use App\Http\Middleware\TanggalMiddleware;
 use Illuminate\Support\Facades\Route;
@@ -29,7 +28,12 @@ Route::get('/users/create', [UserController::class, 'create'])->name('users.crea
 // Route::put('kontak/{id}', [KontakController::class, 'update'])->name('kontak.update');
 // Route::delete('kontak/{id}', [KontakController::class, 'delete'])->name('kontak.update');
 
-Route::resource('kontak', KontakController::class);
+// Route::resource('kontak', KontakController::class);
+Route::get('/kontak', [\App\Http\Controllers\KontakController::class, 'index'])->name('kontak.index');
+Route::get('/kontak/create', [\App\Http\Controllers\KontakController::class, 'create'])->name('kontak.create');
+Route::post('/kontak', [\App\Http\Controllers\KontakController::class, 'store'])->name('kontak.store');
+Route::get('/kontak/{kontak}', [\App\Http\Controllers\KontakController::class, 'show'])->name('kontak.show');
+
 Route::resource('book', BookController::class);
 
 Route::prefix('artikel')->group(function () {

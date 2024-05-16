@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\kontak;
 use Illuminate\Http\Request;
 
 class KontakController extends Controller
@@ -11,7 +12,9 @@ class KontakController extends Controller
      */
     public function index()
     {
-        return "index kontak";
+        return view('kontak.index', [
+            'kontaks' => kontak::get()
+        ]);
     }
 
     /**
@@ -19,7 +22,7 @@ class KontakController extends Controller
      */
     public function create()
     {
-        return "create kontak";
+        return view('kontak.create');
     }
 
     /**
@@ -27,38 +30,40 @@ class KontakController extends Controller
      */
     public function store(Request $request)
     {
-        return "store kontak";
+        //
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(kontak $kontak)
     {
-        return "Show kontak";
+        return view('kontak.show', [
+            'kontak' => $kontak->toArray()
+        ]);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(kontak $kontak)
     {
-        return "edit kontak";
+        //
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, kontak $kontak)
     {
-        return "update kontak";
+        //
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(kontak $kontak)
     {
-        "destroy kontak";
+        //
     }
 }
